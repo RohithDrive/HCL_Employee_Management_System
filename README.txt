@@ -29,12 +29,14 @@
 ####Git Commands
   -> `git status` - get the current state/ branch in the repository
   -> `git branch` - Check for your current branch
+  -> `git branch <branch name>` - create a new branch
+  -> `git checkout -b <branch name>` - create + switch to newly created branch.
+  -> `git checkout <branch name>` - chenge to specific branch
   -> `git clone <repository url from github>` - Entire clone in local system
   -> `git clone -b <branch name> <repository url from githib>` - Entire clone of specific branch code in local system
-  -> `git checkout <branch name>` - chenge to specific branch
   -> `git pull origin <branch name>` - get latest changed code from Git (Git -> Local).
   -> `git add . ` - Stage all Changes(.  means from cd).
   -> `git commit -m "<your message>"` - Commit Changes
   -> `git push origin <branch name>` - push updated code to Git(Local -> Git).
   -> `git push -u origin <branch name>` - push updated code to specific branch in Git(Local -> specific branch in Git).
-  
+  -> `rm -rf <foldername>` - to delete a folder in the local syatem during git push or pull.
