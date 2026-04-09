@@ -21,10 +21,6 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService empService;
-    @GetMapping("/msg")
-    public ResponseEntity<String> message(){
-        return ResponseEntity.ok("OK");
-    }
 
     @PostMapping("/add-employee")
     public ResponseEntity<EmployeeResponse> createEmployee(@RequestBody EmployeeRequest empReq){
