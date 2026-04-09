@@ -43,8 +43,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-
         <dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -98,7 +96,68 @@
 					</excludes>
 				</configuration>
 			</plugin>
-		</plugins>
+
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven3-plugin</artifactId>
+                <version>1.10.7</version>
+                <configuration>
+                    <container>
+                        <containerId>tomcat10x</containerId>
+                        <type>remote</type>
+                    </container>
+                    <configuration>
+                        <type>runtime</type>
+                        <properties>
+                            <cargo.remote.username>admin</cargo.remote.username>
+                            <cargo.remote.password>admin</cargo.remote.password>
+                            <!-- Double check your Tomcat 10 port, usually 8080 or 9090 -->
+                            <cargo.tomcat.manager.url>http://localhost:9090/manager/text</cargo.tomcat.manager.url>
+                        </properties>
+                    </configuration>
+                    <deployer>
+                        <deployables>
+                            <deployable>
+                                <groupId>com.hcl</groupId>
+                                <artifactId>HCLEmployee_Management_System</artifactId>
+                                <type>war</type>
+                                <properties>
+                                    <context>/HCL_EMS</context>
+                                </properties>
+                            </deployable>
+                        </deployables>
+                    </deployer>
+                </configuration>
+            </plugin>
+
+        </plugins>
 	</build>
+    <profiles>
+        <!-- Profile for local development (runs in IDE) -->
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <!-- Profile for Jenkins/Production (excludes Tomcat from WAR) -->
+        <profile>
+            <id>prod</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
 </project>
