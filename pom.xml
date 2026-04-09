@@ -115,7 +115,6 @@
                             <cargo.tomcat.manager.url>http://localhost:9090/manager/text</cargo.tomcat.manager.url>
                         </properties>
                     </configuration>
-                    <deployer>
                         <deployables>
                             <deployable>
                                 <groupId>com.hcl</groupId>
@@ -126,7 +125,6 @@
                                 </properties>
                             </deployable>
                         </deployables>
-                    </deployer>
                 </configuration>
             </plugin>
 
