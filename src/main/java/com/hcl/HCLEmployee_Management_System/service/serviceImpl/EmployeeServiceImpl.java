@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public @Nullable EmployeeResponse createEmployee(EmployeeRequest empReq) {
-        if(empReq.getPhone() == null || empReq.getPhone().isBlank()){ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Phone Number was missing."); }
+        if(empReq.getPhone() == null || empReq.getPhone().isEmpty()){ throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Phone Number was missing."); }
         if(empRepo.existsByPhone(empReq.getPhone())){ throw new ResponseStatusException(HttpStatus.CONFLICT,"Employee already exists with Phone : "+empReq.getPhone()); }
 //        Employee emp = EmployeeMapper.mapToEmployee(empReq);
 //        Employee savedEmp = empRepo.save(emp);
